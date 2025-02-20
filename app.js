@@ -11,6 +11,7 @@ import cors from 'cors';
 import connectDB from './db/db.js';
 
 // Import Routes
+import createPostRouter from './routes/createPost.routes.js';
 
 // initiate app
 const app = express();
@@ -26,7 +27,11 @@ connectDB();
 
 
 // set routes
+app.use('/api/create', createPostRouter);
 
+app.get('/', (req, res) => {
+    res.send('Hello World!');    
+})
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
