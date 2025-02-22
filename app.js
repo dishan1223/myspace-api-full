@@ -12,6 +12,7 @@ import connectDB from './db/db.js';
 
 // Import Routes
 import createPostRouter from './routes/createPost.routes.js';
+import getDataRouter from './routes/getData.routes.js';
 
 // initiate app
 const app = express();
@@ -28,6 +29,7 @@ connectDB();
 
 // set routes
 app.use('/api/create', createPostRouter);
+app.use('/api/posts', getDataRouter);
 
 app.get('/', (req, res) => {
     res.send('Hello World!');    
