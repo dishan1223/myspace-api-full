@@ -10,6 +10,10 @@ import cors from 'cors';
 // Database connection
 import connectDB from './db/db.js';
 
+// Middleware imports 
+import botDetection from './middleware/botDetection.middleware.js';
+import rateLimit from './middleware/rateLimiting.middleware.js';
+
 // Import Routes
 import createPostRouter from './routes/createPost.routes.js';
 import getDataRouter from './routes/getData.routes.js';
@@ -22,6 +26,8 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(botDetection);
+app.use(rateLimit);
 
 // Connect to MONGO DB
 connectDB();
